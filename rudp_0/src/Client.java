@@ -28,11 +28,12 @@ public class Client {
 			/*NetworkInterface netif = NetworkInterface.getByInetAddress(inetaddr);
 			byte[] mac= new byte[6];
 			mac=netif.getHardwareAddress();*/
+			/*
 			NetworkInterface netif = NetworkInterface.getByInetAddress(me);
 			byte[] mac= new byte[6];
 			mac=netif.getHardwareAddress();
 			llc.setSaddr(mac);
-
+			 */
 			
 			System.out.println("Target IP Address is : " + inetaddr.getHostAddress());
 			System.out.println("Target Port No is : " + port);
@@ -80,9 +81,9 @@ public class Client {
                 	}
                 }	
             } 
-            netif =  NetworkInterface.getByInetAddress(inetaddr);
+            /*netif =  NetworkInterface.getByInetAddress(inetaddr);
             mac = netif.getHardwareAddress();
-            llc.setDaddr(mac);
+            llc.setDaddr(mac);*/
 			while(sem) {
 				System.out.print("Input Data : "); 
 				String input;

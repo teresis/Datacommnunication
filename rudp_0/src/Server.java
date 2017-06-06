@@ -31,10 +31,10 @@ public class Server {
             DatagramSocket dsock = new DatagramSocket(port); 
             InetAddress inetaddr = InetAddress.getLocalHost();
             
-            NetworkInterface netif = NetworkInterface.getByInetAddress(inetaddr);
-            byte[] mac = new byte[6];
-            mac = netif.getHardwareAddress();
-            llc.setSaddr(mac);
+            //NetworkInterface netif = NetworkInterface.getByInetAddress(inetaddr);
+            //byte[] mac = new byte[6];
+            //mac = netif.getHardwareAddress();
+            //llc.setSaddr(mac);
             
             DatagramPacket sendPacket = null;
             
@@ -47,9 +47,9 @@ public class Server {
 			
             while (sem) {
                 dsock.receive(dpack); // listen for packets
-                NetworkInterface netif1 = NetworkInterface.getByInetAddress(dpack.getAddress());
-                byte[] mac1 = netif1.getHardwareAddress();
-                llc.setDaddr(mac1);
+                //NetworkInterface netif1 = NetworkInterface.getByInetAddress(dpack.getAddress());
+                //byte[] mac1 = netif1.getHardwareAddress();
+                //llc.setDaddr(mac1);
                 //System.out.println("client mac is "+byteArrayToHex(mac1));
                 System.out.println("\nPacket is Received from Client"  + "! (Sequence #" + getSeqNum(seg) + ")");
                 int length = LPDUToInt(seg);
@@ -68,7 +68,7 @@ public class Server {
                 }
 
                 else if((getformat(seg)&(byte)0x80)==(byte)0x00){
-                	llc.setCONTROL((byte)0x80, (byte)0, 1);
+                	llc.setCONTROL((byte)0x80, (byte)getSeqNum(seg), 1);
                 	llc.setLPDU();
                 }
 
